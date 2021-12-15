@@ -28,7 +28,7 @@ const springConfig = {
 interface SwipeableElementT {
   children: React.ReactElement;
   threshold?: number;
-  onSwipeEndOverThreshold: (direction: 'right' | 'left') => void;
+  onSwipeEndOverThreshold?: (direction: 'right' | 'left') => void;
 }
 const SwipeableElement = ({
   children,
@@ -58,9 +58,9 @@ const SwipeableElement = ({
     onEnd: () => {
       if (translateX.value > thresholdInternal) {
         // execute callback `onSwipeEndOverThreshold` with `"right"` as argument
-        runOnJS(onSwipeEndOverThreshold)('right');
+        onSwipeEndOverThreshold && runOnJS(onSwipeEndOverThreshold)('right');
       } else if (translateX.value < -thresholdInternal) {
-        runOnJS(onSwipeEndOverThreshold)('left');
+        onSwipeEndOverThreshold && runOnJS(onSwipeEndOverThreshold)('left');
       }
       // the next line triggers the actual animation of the component including `translateX` in its style declaration
       // see: https://docs.swmansion.com/react-native-reanimated/docs/animations#customizing-animations for more examples and links to the API

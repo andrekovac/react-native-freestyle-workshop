@@ -9,6 +9,9 @@ import Animated, {
 
 const bgColors = ['red', 'green', 'blue'];
 
+/**
+ * Cards that spring apart
+ */
 const AnimatedCards: React.VFC = () => {
   const [open, setOpen] = useState(false);
 
@@ -33,6 +36,12 @@ type CardProps = {
   open: boolean;
 };
 
+/**
+ * Card holds shared value + style
+ *
+ * The `useSpring` hook in the other implementation makes for a
+ * nicer separation of concerns.
+ */
 const Card: React.VFC<CardProps> = ({ index, color, open }) => {
   const sav = useSharedValue(0);
 

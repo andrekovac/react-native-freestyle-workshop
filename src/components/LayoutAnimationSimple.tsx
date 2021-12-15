@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Platform,
-  UIManager,
-  Text,
-  Button,
-  LayoutAnimation,
-} from 'react-native';
+import { Platform, UIManager, Button, LayoutAnimation } from 'react-native';
 import styled from 'styled-components/native';
 
 if (

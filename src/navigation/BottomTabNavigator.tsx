@@ -2,9 +2,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import React from 'react';
 import { Text } from 'react-native';
+import AnimatedPlaygroundScreen from '../screens/AnimatedPlaygroundScreen';
 import LayoutAnimationScreen from '../screens/LayoutAnimationScreen';
-import RanimatedPlaygroundScreen from '../screens/RanimatedPlaygroundScreen';
-import Reanimated2Screen from '../screens/Reanimated2Screen';
+import ReanimatedPlaygroundScreen from '../screens/ReanimatedPlaygroundScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 import PhotosStackNavigator from './PhotosStackNavigator';
 
 const Tab = createBottomTabNavigator();
@@ -12,7 +13,9 @@ const Tab = createBottomTabNavigator();
 export type BottomTabNavigatorParamList = {
   Photos: undefined;
   LayoutAnimation: undefined;
-  Reanimated2: undefined;
+  AnimatedPlayground: undefined;
+  ReanimatedPlayground: undefined;
+  Settings: undefined;
 };
 
 const getHeaderTitle = (route: any) => {
@@ -38,11 +41,11 @@ const BottomTabNavigator = () => {
         options={({ route, navigation }) => {
           const routeName =
             getFocusedRouteNameFromRoute(route) ?? 'PhotosScreen';
-          //
+
           return {
-            // headerShown: false,
-            headerTitle: getHeaderTitle(route),
-            // headerShown: routeName !== 'PhotosDetails',
+            title: 'Photos',
+            headerShown: false,
+            // NB: This is overwritten by headerLeft inside PhotosDetails screen
             headerLeft: () =>
               routeName === 'PhotosDetails' && (
                 <Text onPress={() => navigation.goBack()}>Go back</Text>
@@ -53,13 +56,19 @@ const BottomTabNavigator = () => {
       <Tab.Screen
         name="LayoutAnimation"
         component={LayoutAnimationScreen}
-        options={{ tabBarBadge: 3, headerTitle: 'Layout Animation' }}
+        options={{ tabBarBadge: 3, title: 'Layout Animation' }}
       />
       <Tab.Screen
-        name="RanimatedPlayground"
-        component={RanimatedPlaygroundScreen}
+        name="AnimatedPlayground"
+        component={AnimatedPlaygroundScreen}
+        options={{ title: 'Animated' }}
       />
-      <Tab.Screen name="Reanmiated2" component={Reanimated2Screen} />
+      <Tab.Screen
+        name="ReanimatedPlayground"
+        component={ReanimatedPlaygroundScreen}
+        options={{ title: 'Reanimated 2' }}
+      />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
 };

@@ -4,9 +4,10 @@ import {
   useFocusEffect,
 } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FlatPhotoList from '../components/FlatPhotoList';
+import usePhotos from '../hooks/usePhotos';
 import { BottomTabNavigatorParamList } from '../navigation/BottomTabNavigator';
 import { PhotosStackParamList } from '../navigation/PhotosStackNavigator';
 
@@ -15,46 +16,30 @@ export type PhotosScreenNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<BottomTabNavigatorParamList>
 >;
 
-type Photo = {
-  id: string;
-  author: string;
-  download_url: string;
-};
-
-// custom hook hooks/usePhotos
-const usePhotos = () => {
-  const [photos, setPhotos] = useState<Photo[]>([]);
-
-  useEffect(() => {
-    const fetchPhotos = async () => {
-      const response = await fetch(
-        'https://picsum.photos/v2/list?page=7&limit=10',
-      );
-      const data = await response.json();
-      setPhotos(data);
-    };
-    fetchPhotos();
-  }, []);
-
-  return photos;
-};
-
 const PhotosScreen: React.FC = () => {
   const photos = usePhotos();
 
   useEffect(() => {
-    console.log('mount');
+    console.log(
+      '[PhotosScreen] screen mounts and will stay mounted while you visit PhotosDetails',
+    );
     return () => {
-      console.log('unmount');
+      console.log(
+        '[PhotosScreen] screen does not unmount unless tab navigation is popped from RootStack.',
+      );
     };
   }, []);
 
-  useFocusEffect(() => {
-    console.log('focused screen');
-    return () => {
-      console.log('unfocused screen');
-    };
-  });
+  // useFocusEffect is called on every render when the screen is in focus
+  // useCallback causes it to be only called when focused/unfocused
+  useFocusEffect(
+    useCallback(() => {
+      console.log('[PhotosScreen] focused');
+      return () => {
+        console.log('[PhotosScreen] unfocused');
+      };
+    }, []),
+  );
 
   // loading
   return (

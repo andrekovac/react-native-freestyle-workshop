@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Photo } from '../components/FlatPhotoList';
 import PhotosDetailsScreen from '../screens/PhotosDetailsScreen';
 import PhotosScreen from '../screens/PhotosScreen';
+import { Photo } from '../domain/photo';
 
 const Stack = createNativeStackNavigator();
 

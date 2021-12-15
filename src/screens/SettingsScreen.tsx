@@ -2,7 +2,6 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Button } from 'react-native';
 import styled from 'styled-components/native';
-import TapEvents from '../components/TapEvents';
 import { RootStackParamList } from '../navigation';
 
 type Reanimated2ScreenProps = BottomTabScreenProps<
@@ -15,7 +14,6 @@ const Reanimated2Screen: React.FC<Reanimated2ScreenProps> = ({
 }) => {
   return (
     <ScreenWrapper>
-      <TapEvents />
       <Button
         onPress={() => navigation.navigate('ModalScreen')}
         title="Open Modal"
@@ -28,7 +26,7 @@ const Reanimated2Screen: React.FC<Reanimated2ScreenProps> = ({
             params: { item: { id: 23123, author: 'Jamie' } },
           })
         }
-        title="Go to user Jamie"
+        title="Navigate to Details screen (Jamie)"
       />
     </ScreenWrapper>
   );

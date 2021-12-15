@@ -10,6 +10,11 @@ import Animated, {
 
 const bgColors = ['red', 'green', 'blue'];
 
+/**
+ * This hook makes the transition between two values to a spring animation.
+ *
+ * This implementation is similar to the `useSpring` hook in `react-native-redash`
+ */
 const useSpring = (open: boolean) => {
   const sav = useSharedValue(0);
 
@@ -21,6 +26,14 @@ const useSpring = (open: boolean) => {
   return useDerivedValue(() => withSpring(sav.value));
 };
 
+/**
+ * Cards that spring apart
+ *
+ * This implementation is cleaner than the other one because
+ * shared value code is separate from styling.
+ *
+ *
+ */
 const AnimatedCards_useSpring: React.VFC = () => {
   const [open, setOpen] = useState(false);
 
@@ -47,6 +60,9 @@ type CardProps = {
   transition: Readonly<SharedValue<number>>;
 };
 
+/**
+ * Card Component only deals with styling and receives shared value via prop
+ */
 const Card: React.VFC<CardProps> = ({ index, color, transition }) => {
   const animatedStyle = useAnimatedStyle(() => {
     return {
