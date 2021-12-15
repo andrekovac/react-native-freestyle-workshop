@@ -2,7 +2,9 @@
 
 This is a collection of code we implemented during the workshop to cover topics like animations (`Animated` and `reanmiated2`), navigation (`react-navigation`) and React Native development tools.
 
-## Workshop notes
+## Workshop Notes
+
+Notes about discussed concepts, example code and instructions to set up dev tools:
 
 - [Create new React Native project](./docs/install-react-native.md)
 - [React Native Basics](./docs/react-native-basics.md)
