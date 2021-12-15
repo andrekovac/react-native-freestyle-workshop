@@ -5,17 +5,13 @@ import Animated, {
   cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 import * as Progress from 'react-native-progress';
 
 const squareWidth = 70;
 
-const config = {
-  damping: 10,
-};
-
-const Animation01 = () => {
+const RanimatedPlaygroundScreen = () => {
   const { width: screenWidth } = useWindowDimensions();
   // Trick to cause a re-render
   const [, rerender] = useState<object>();
@@ -24,11 +20,7 @@ const Animation01 = () => {
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [
       {
-        translateX: withSpring(offset.value, config, finished =>
-          finished
-            ? console.log('animation ran to completion')
-            : console.log('animation got interrupted / cancelled'),
-        ),
+        translateX: offset.value,
       },
     ],
   }));
@@ -37,10 +29,13 @@ const Animation01 = () => {
     <View style={{ backgroundColor: '#ece' }}>
       <Button
         onPress={() => {
-          // Note: calling withSpring here causes animation to not be properly interruptible
-          // in this example because value only alternates between two values.
-          // See https://github.com/software-mansion/react-native-reanimated/issues/2733
-          offset.value = offset.value === 0 ? screenWidth - squareWidth : 0;
+          // Math.random assures that value is new every time
+          const newOffsetValue = withTiming(
+            Math.random() * 200,
+            { duration: 200 },
+            () => console.log('animation ran to completion or got interrupted'),
+          );
+          offset.value = newOffsetValue;
           rerender({});
         }}
         title="Toggle"
@@ -78,4 +73,4 @@ const ProgressBar: React.VFC<ProgressBarProps> = ({ value, width }) => (
   </View>
 );
 
-export default Animation01;
+export default RanimatedPlaygroundScreen;
