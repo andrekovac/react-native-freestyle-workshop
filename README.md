@@ -31,11 +31,11 @@ This is a collection of code we implemented during the workshop to cover topics 
 
 ### [Reanimated 2](https://docs.swmansion.com/react-native-reanimated/)
 
-- Compare the two implementations `src/components/AnimatedCards.tsx` and `src/components/AnimatedCards_useSpring.tsx`
-- 
+- Compare the two implementations of a spring animation: `src/components/AnimatedCards.tsx` and `src/components/AnimatedCards_useSpring.tsx`
 
 <img width="282" alt="image" src="https://user-images.githubusercontent.com/1945462/146270742-44ab5605-351e-4114-95a4-a680c15b6445.png">
 
 ### [`react-navigation` Modal](https://reactnavigation.org/docs/modal/)
 
-<img width="282" alt="image" src="https://user-images.githubusercontent.com/1945462/146270778-51912a96-c87e-43cf-9dc7-a427fec03d8e.png">
+<img width="282" alt="image" src="https://user-images.githubusercontent.com/1945462/146271725-16506161-a63d-4d80-9220-06286ab09874.png">
+
