@@ -3,27 +3,27 @@
  
 ### Setup
 
-Copy/paste these dependencies into your `package.json`:
+1. Copy/paste these dependencies into your `package.json`:
  
-```
-"@react-navigation/bottom-tabs": "^6.0.9",
-"@react-navigation/devtools": "^6.0.4",
-"@react-navigation/native": "^6.0.6",
-"@react-navigation/native-stack": "^6.2.5",
-"react-native-safe-area-context": "^3.3.2",
-"react-native-screens": "^3.10.1",
-"react-native-webview": "^11.15.0",
-"react-native-youtube-iframe": "^2.2.1",
-```
+  ```
+  "@react-navigation/bottom-tabs": "^6.0.9",
+  "@react-navigation/devtools": "^6.0.4",
+  "@react-navigation/native": "^6.0.6",
+  "@react-navigation/native-stack": "^6.2.5",
+  "react-native-safe-area-context": "^3.3.2",
+  "react-native-screens": "^3.10.1",
+  ```
   
-And this one under `devDependencies`:
+2. And this one under `devDependencies`:
   
-```
-"react-native-flipper": "^0.125.0",
-```
+  ```
+  "react-native-flipper": "^0.125.0",
+  ```
 
-Then run `yarn`, run `cd ios && pod install` and re-build (`yarn ios` / `yarn android`).
-  
+3. Run `yarn` to install these new dependencies.
+4. Run `cd ios && pod install` to install the new native ios dependencies
+5. Restart the packager (kill the current packager process and run `yarn start` again) and re-build your project (`yarn ios` / `yarn android`).
+ 
 ### Basic project structure
 
 `App.tsx`:
