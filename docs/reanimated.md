@@ -3,6 +3,9 @@
 ### Agenda
 
 - Install it using the install instructions [here](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
+
+  - Part of these instructions ask you to [enable Hermes](https://reactnative.dev/docs/hermes) - that's what we already did in the part on dev tools
+
 - Theory: worklets, `useSharedValue`, `useAnimatedStyle`, animation drivers (`withSpring`, `withTiming`)
 - Drive animations via shared value vs. via useState (own implementation of `useSpring` hook from `react-native-redash` in `src/components/AnimatedCards_useSpring.tsx`)
 - Cards Animation example
