@@ -4,8 +4,10 @@ import {
   useFocusEffect,
 } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import styled from 'styled-components/native';
 import FlatPhotoList from '../components/FlatPhotoList';
 import usePhotos from '../hooks/usePhotos';
 import { BottomTabNavigatorParamList } from '../navigation/BottomTabNavigator';
@@ -18,6 +20,8 @@ export type PhotosScreenNavigationProp = CompositeNavigationProp<
 
 const PhotosScreen: React.FC = () => {
   const photos = usePhotos();
+
+  const [swipes, setSwipes] = useState({ left: 0, right: 0 });
 
   useEffect(() => {
     console.log(
@@ -41,12 +45,40 @@ const PhotosScreen: React.FC = () => {
     }, []),
   );
 
-  // loading
+  const handleSwipeEnd = (direction: 'left' | 'right') => {
+    if (direction === 'left') {
+      setSwipes({
+        ...swipes,
+        left: swipes.left + 1,
+      });
+    } else {
+      setSwipes({
+        ...swipes,
+        right: swipes.right + 1,
+      });
+    }
+  };
+
   return (
     <SafeAreaView>
-      <FlatPhotoList photos={photos} />
+      <SwipeCounts>
+        <TextBold>Total Swipes</TextBold>
+        <Text>{`Right: ${swipes.right}, Left: ${swipes.left}`}</Text>
+      </SwipeCounts>
+      <FlatPhotoList photos={photos} onSwipeEnd={handleSwipeEnd} />
     </SafeAreaView>
   );
 };
+
+const TextBold = styled.Text`
+  font-weight: bold;
+  font-size: 18px;
+`;
+
+const SwipeCounts = styled.View`
+  padding: 10px;
+  margin: 20px;
+  background-color: #90beed;
+`;
 
 export default PhotosScreen;
