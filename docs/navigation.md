@@ -29,7 +29,13 @@
 `App.tsx`:
 
 ```tsx
+import React from 'react';
 import { useFlipper } from '@react-navigation/devtools';
+import {
+  NavigationContainer,
+  useNavigationContainerRef,
+} from '@react-navigation/native';
+import RootNavigator from './src/navigation';
 
 const App = () => {
   const navigationRef = useNavigationContainerRef();
@@ -101,7 +107,7 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Example" component={ExampleScreen} />
-      {/* Add your other tab screens here */ }
+      {/* Add your other tab screens here */}
     </Tab.Navigator>
   );
 };
@@ -116,7 +122,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { Button, Text } from 'react-native';
 import styled from 'styled-components/native';
-import AnimatedCards from '../components/AnimatedCards';
 import { RootStackParamList } from '../navigation';
 
 type ModalScreenProps = NativeStackScreenProps<
@@ -127,7 +132,7 @@ type ModalScreenProps = NativeStackScreenProps<
 const ModalScreen: React.FC<ModalScreenProps> = ({ navigation }) => {
   return (
     <ModalWrapper>
-	 <Text>Modal</Text>
+      <Text>Modal</Text>
       <Button onPress={() => navigation.goBack()} title="Dismiss" />
     </ModalWrapper>
   );
