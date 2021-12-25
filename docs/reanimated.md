@@ -2,7 +2,7 @@
 
 ### Agenda
 
-- Installation
+- Install it using the install instructions [here](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
 - Theory: worklets, `useSharedValue`, `useAnimatedStyle`, animation drivers (`withSpring`, `withTiming`)
 - Drive animations via shared value vs. via useState (own implementation of `useSpring` hook from `react-native-redash` in `src/components/AnimatedCards_useSpring.tsx`)
 - Cards Animation example
