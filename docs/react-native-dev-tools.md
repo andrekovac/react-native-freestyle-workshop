@@ -73,3 +73,4 @@ If necessary, also delete derived data [as described here](https://stackoverflow
 
   <img width="896" alt="image" src="https://user-images.githubusercontent.com/1945462/146085486-ccd1e66d-7685-469b-88da-79d193257ff0.png">
 
+Read more about Flipper in [this nice blog article about it](https://blog.logrocket.com/debugging-react-native-apps-flipper/).
